@@ -25,15 +25,26 @@ DEFAULT_RUNS = 5
 
 DEFAULT_PAYLOAD = json.dumps(
     {
-        "request_id": "uuid-1234",
+        "request_id": "550e8400-e29b-41d4-a716-446655440000",
         "timestamp": "2026-07-04T12:00:00Z",
+        "service": "payment-gateway",
+        "region": "eu-west-roubaix",
         "user": {
-            "id": 12345,
+            "id": 987654321,
             "role": "admin",
-            "amount": 123,
-            "metadata": {"source": "web", "ip": "127.0.0.1"},
+            "amount": 12345,
+            "currency": "EUR",
+            "status": "active",
+            "metadata": {
+                "source": "web",
+                "ip": "203.0.113.42",
+                "user_agent": "Mozilla/5.0",
+                "session_id": "sess-abc123",
+            },
+            "tags": ["premium", "verified", "eu"],
         },
-        "flags": ["fast", "verified"],
+        "flags": ["fast", "verified", "encrypted"],
+        "context": {"trace_id": "trace-xyz789", "span_id": "span-123"},
     }
 )
 
