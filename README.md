@@ -1,7 +1,7 @@
 # nanofdo-public-benchmarks
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![API](https://img.shields.io/badge/API-live-green.svg)](https://api.nanofdo.com/api/v1/parse)
+[![API](https://img.shields.io/badge/API-live-green.svg)](https://github.com/JoManix-OSS/Nanofdo-public-benchmarks#live-endpoints)
 
 Public, reproducible parsing benchmarks for [NanoFDO](https://nanofdo.com).
 
