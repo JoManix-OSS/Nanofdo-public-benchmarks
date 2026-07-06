@@ -1,7 +1,8 @@
 # nanofdo-public-benchmarks
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![API](https://img.shields.io/badge/API-live-green.svg)](https://github.com/JoManix-OSS/Nanofdo-public-benchmarks#live-endpoints)
+[![API](https://img.shields.io/badge/API-live-green.svg)](https://github.com/JoManix-OSS/nanofdo-public-benchmarks#live-endpoints)
+[![Results](https://img.shields.io/badge/Results-2026--07--04-blue.svg)](RESULTS.md)
 
 Public, reproducible parsing benchmarks for [NanoFDO](https://nanofdo.com).
 
@@ -17,6 +18,12 @@ This repository contains independent, server-side measurements of JSON parsing l
 | mean   | 632 ns  | 2204 ns    | **3.49x** |
 
 See [RESULTS.md](RESULTS.md) for the full dataset, raw runs, and methodology notes.
+
+## Methodology & quota
+
+**Free quota.** Registration gives **1,000,000 API requests per month**. One benchmark run consumes **1 API request**, even though the server executes 100,000 iterations to produce the latency distribution. Normal usage (a few dozen runs) represents less than 0.001% of the quota.
+
+**Sovereign metric.** The latency numbers reported here (`server_processing_ns`) are measured **server-side**, independently of the network. The total HTTP call time (RTT) you measure locally includes the network, nginx, and Cloudflare — that is **not** the NanoFDO parsing latency.
 
 ## Live endpoints
 
@@ -63,9 +70,20 @@ curl -X POST https://api.nanofdo.com/api/v1/parse \
 
 ## Interpreting the results
 
-- **p50 / p95 / p99** are the primary metrics. They show stable speedups around **2.9–3.0x** on this payload.
-- **p999** is volatile (5–12x) and depends on rare system interruptions during the 100,000-iteration run. It is reported for completeness but should not be used as the headline figure.
+- **p50 / p95 / p99** are the primary metrics. They show stable speedups around **3.4–3.5x** on this payload.
+- **p999** is volatile (4–5x on this payload) and depends on rare system interruptions during the 100,000-iteration run. It is reported for completeness but should not be used as the headline figure.
 - Transient load on the server can double absolute latencies while keeping the speedup ratio consistent. Repeat runs are recommended.
+
+## About NanoFDO
+
+NanoFDO is a high-performance JSON processing engine with an integrated L7 security layer. Independently measured product metrics:
+
+- **1,764 OWASP vectors** embedded, **8/10 OWASP Top 10 2021** coverage
+- **~107 ns/scan** security overhead
+- **+0 ns** overhead on legitimate requests
+- Zero-allocation hot path, sub-microsecond parsing
+
+Learn more at [nanofdo.com](https://nanofdo.com).
 
 ## License
 
