@@ -1,5 +1,22 @@
 # NanoFDO Public Benchmark Results
 
+## 2026-07-06 run
+
+After fixing the CPU governor to `performance` on the OVH server, a fresh
+5-run benchmark produced the following summary:
+
+| Metric | NanoFDO | serde_json | speedup |
+|--------|---------|------------|---------|
+| p50    | 842 ns  | 2130 ns    | 2.58x   |
+| p95    | 860 ns  | 2156 ns    | 2.55x   |
+| p99    | 870 ns  | 2171 ns    | 2.54x   |
+| p999   | 2269 ns | 3603 ns    | 1.60x   |
+| mean   | 849 ns  | 2138 ns    | 2.57x   |
+
+Raw data is available in `results.json`.
+
+## Historical run — 2026-07-04
+
 ## Test date
 
 2026-07-04
@@ -70,7 +87,7 @@ Average of 3 runs on the payload above.
 ## Notes
 
 - **p999 is still the most volatile metric.** On this larger payload it stays in the 4–5x range, much more stable than on the smaller payload where it ranged from 5–12x.
-- **Server load matters.** Transient load on the OVH server can double absolute latencies. The speedup ratio stays stable around 3.5x.
+- **Server load matters.** Transient load on the OVH server can double absolute latencies. The speedup ratio stays in the 2.5–3.0x range on the current configuration.
 - **Reproducible.** Anyone can reproduce these results by registering at `POST https://api.nanofdo.com/api/v1/register` and calling `POST https://api.nanofdo.com/api/v1/parse` with the generated license key.
 
 ## License

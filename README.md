@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![API](https://img.shields.io/badge/API-live-green.svg)](https://github.com/JoManix-OSS/nanofdo-public-benchmarks#live-endpoints)
-[![Results](https://img.shields.io/badge/Results-2026--07--04-blue.svg)](RESULTS.md)
+[![Results](https://img.shields.io/badge/Results-2026--07--06-blue.svg)](RESULTS.md)
 
 Public, reproducible parsing benchmarks for [NanoFDO](https://nanofdo.com).
 
@@ -12,10 +12,10 @@ This repository contains independent, server-side measurements of JSON parsing l
 
 | Metric | NanoFDO | serde_json | speedup |
 |--------|---------|------------|---------|
-| p50    | 628 ns  | 2194 ns    | **3.49x** |
-| p95    | 635 ns  | 2233 ns    | **3.51x** |
-| p99    | 647 ns  | 2254 ns    | **3.48x** |
-| mean   | 632 ns  | 2204 ns    | **3.49x** |
+| p50    | 842 ns  | 2130 ns    | **2.58x** |
+| p95    | 860 ns  | 2156 ns    | **2.55x** |
+| p99    | 870 ns  | 2171 ns    | **2.54x** |
+| mean   | 849 ns  | 2138 ns    | **2.57x** |
 
 See [RESULTS.md](RESULTS.md) for the full dataset, raw runs, and methodology notes.
 
@@ -70,7 +70,7 @@ curl -X POST https://api.nanofdo.com/api/v1/parse \
 
 ## Interpreting the results
 
-- **p50 / p95 / p99** are the primary metrics. They show stable speedups around **3.4–3.5x** on this payload.
+- **p50 / p95 / p99** are the primary metrics. Recent runs show speedups in the **2.5–3.0x** range on this payload, depending on CPU frequency state and transient server load.
 - **p999** is volatile (4–5x on this payload) and depends on rare system interruptions during the 100,000-iteration run. It is reported for completeness but should not be used as the headline figure.
 - Transient load on the server can double absolute latencies while keeping the speedup ratio consistent. Repeat runs are recommended.
 
