@@ -15,6 +15,15 @@ After fixing the CPU governor to `performance` on the OVH server, a fresh
 
 Raw data is available in `results.json`.
 
+## About these numbers
+
+NanoFDO publishes performance figures from several measurement contexts. They differ intentionally and each one answers a different question.
+
+- **Public benchmark (this repository):** measures full server-side pipeline latency for a single JSON payload over 100,000 iterations. It is our conservative, independently reproducible reference point.
+- **Live benchmark and Labs simulator:** measure steady-state throughput on repetitive traffic streams. These figures reflect the engine's behavior when the same structure is seen repeatedly.
+- **Your actual gain** depends on the repetitiveness of your traffic: the more your payloads share a stable JSON structure, the closer you get to the upper range.
+- **Independent verification:** download the local binaries and measure on your own hardware.
+
 ## Historical run — 2026-07-04
 
 ## Test date
