@@ -101,4 +101,4 @@ Average of 3 runs on the payload above.
 
 ## License
 
-Data collected under the NanoFDO Developer Edge tier (1,000,000 requests/month). This benchmark run consumed 23 requests.
+Data collected before the dedicated hosted benchmark allowance took effect. From July 20, 2026, public keys are benchmark-only and limited to 10 runs per day and 50 runs per calendar month. This historical snapshot contains 23 runs.

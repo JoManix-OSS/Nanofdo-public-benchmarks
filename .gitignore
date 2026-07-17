@@ -5,6 +5,7 @@ __pycache__/
 
 # Local benchmark results
 results.json
+.nanofdo-benchmark-key
 
 # C extensions
 *.so

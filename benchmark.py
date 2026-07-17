@@ -11,7 +11,10 @@ Example:
 """
 
 import json
+import os
+from pathlib import Path
 import sys
+from typing import Optional
 import time
 
 import requests
@@ -20,8 +23,8 @@ API_BASE = "https://api.nanofdo.com"
 REGISTER_URL = f"{API_BASE}/api/v1/register"
 PARSE_URL = f"{API_BASE}/api/v1/parse"
 
-DEFAULT_EMAIL = "benchmark@example.com"
 DEFAULT_RUNS = 5
+KEY_FILE = Path(__file__).resolve().parent / ".nanofdo-benchmark-key"
 
 DEFAULT_PAYLOAD = json.dumps(
     {
@@ -51,9 +54,43 @@ DEFAULT_PAYLOAD = json.dumps(
 
 def register(email: str) -> str:
     resp = requests.post(REGISTER_URL, json={"email": email}, timeout=30)
-    resp.raise_for_status()
+    if not resp.ok:
+        detail = (
+            resp.json()
+            if "application/json" in resp.headers.get("content-type", "")
+            else {}
+        )
+        message = detail.get("message", "Registration failed")
+        retry_after = detail.get("retry_after_seconds")
+        suffix = f" Retry after {retry_after} seconds." if retry_after else ""
+        raise RuntimeError(f"{message}{suffix}")
     data = resp.json()
     return data["license_key"]
+
+
+def load_or_register_key(email: Optional[str]) -> str:
+    environment_key = os.environ.get("NANOFDO_BENCHMARK_KEY", "").strip()
+    if environment_key:
+        return environment_key
+
+    if KEY_FILE.is_file():
+        stored_key = KEY_FILE.read_text(encoding="utf-8").strip()
+        if stored_key:
+            return stored_key
+
+    if not email:
+        raise SystemExit(
+            "An email is required for first registration. Use: "
+            "python benchmark.py your-email@example.com 5"
+        )
+
+    key = register(email)
+    KEY_FILE.write_text(key, encoding="utf-8")
+    try:
+        KEY_FILE.chmod(0o600)
+    except OSError:
+        pass
+    return key
 
 
 def run_parse(license_key: str, payload: str) -> dict:
@@ -62,9 +99,18 @@ def run_parse(license_key: str, payload: str) -> dict:
         "x-nanofdo-license-key": license_key,
     }
     resp = requests.post(
-        PARSE_URL, headers=headers, json={"payload": payload}, timeout=120
+        PARSE_URL, headers=headers, json={"payload": payload}, timeout=45
     )
-    resp.raise_for_status()
+    if not resp.ok:
+        detail = (
+            resp.json()
+            if "application/json" in resp.headers.get("content-type", "")
+            else {}
+        )
+        message = detail.get("message", "Benchmark request failed")
+        retry_after = detail.get("retry_after_seconds")
+        suffix = f" Retry after {retry_after} seconds." if retry_after else ""
+        raise RuntimeError(f"{message}{suffix}")
     return resp.json()
 
 
@@ -83,12 +129,13 @@ def mean(values: list[float]) -> float:
 
 
 def main() -> None:
-    email = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_EMAIL
+    email = sys.argv[1] if len(sys.argv) > 1 else None
     runs = int(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_RUNS
+    if not 1 <= runs <= 5:
+        raise SystemExit("Runs must be between 1 and 5 per invocation.")
 
-    print(f"Registering with {email} ...")
-    license_key = register(email)
-    print(f"License key: {license_key}")
+    license_key = load_or_register_key(email)
+    print("Benchmark key loaded.")
 
     print(f"Running {runs} benchmark(s) ...")
     results = []

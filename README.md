@@ -6,7 +6,7 @@
 
 Public, reproducible parsing benchmarks for [NanoFDO](https://nanofdo.com).
 
-This repository contains independent, server-side measurements of JSON parsing latency. Anyone can register for a free Developer Edge key and reproduce the results in minutes.
+This repository contains independent, server-side measurements of JSON parsing latency. Anyone can register for a free, benchmark-only key and reproduce the results in minutes. Hosted access is for evaluation and reproducibility, not production processing or load testing.
 
 ## Latest results snapshot
 
@@ -28,18 +28,22 @@ NanoFDO publishes performance figures from several measurement contexts. They di
 - **Your actual gain** depends on the repetitiveness of your traffic: the more your payloads share a stable JSON structure, the closer you get to the upper range.
 - **Independent verification:** download the local binaries and measure on your own hardware.
 
-## Methodology & quota
+## Methodology & hosted allowance
 
-**Free quota.** Registration gives **1,000,000 API requests per month**. One benchmark run consumes **1 API request**, even though the server executes 100,000 iterations to produce the latency distribution. Normal usage (a few dozen runs) represents less than 0.001% of the quota.
+**Fixed method.** Each hosted run uses 100,000 measured iterations and 1,000 warmup iterations. Custom values are rejected so public results remain comparable.
 
-**Sovereign metric.** The latency numbers reported here (`server_processing_ns`) are measured **server-side**, independently of the network. The total HTTP call time (RTT) you measure locally includes the network, nginx, and Cloudflare — that is **not** the NanoFDO parsing latency.
+**Free hosted allowance.** A benchmark-only key provides **10 runs per day** and **50 runs per calendar month**, with 5 attempts per 15 minutes and 1 concurrent run per key. The shared hosted service accepts at most **500 reserved runs per day** across all public keys, with 2 concurrent runs globally and a 30-second execution limit.
+
+**Sovereign metric.** The latency numbers reported here (`server_processing_ns`) are measured **server-side**, independently of the network. The total HTTP call time (RTT) you measure locally includes network and intermediary processing — that is **not** the NanoFDO processing latency.
+
+See the full [methodology](METHODOLOGY.md). Intensive research requires prior approval or an approved local option.
 
 ## Live endpoints
 
 - **Register** — `POST https://api.nanofdo.com/api/v1/register`
-  - Returns a free Developer Edge license key (1M requests/month).
+  - Returns a free key scoped exclusively to the public benchmark.
 - **Benchmark** — `POST https://api.nanofdo.com/api/v1/parse`
-  - Returns server-side parsing latency distributions (p50/p95/p99/p999) for NanoFDO and a `serde_json` baseline.
+  - Returns server-side parsing latency distributions (p50/p95/p99/p999) and a matching baseline.
 
 ## Quick start
 
@@ -48,7 +52,15 @@ pip install requests
 python benchmark.py your-email@example.com 5
 ```
 
-Results are saved to `results.json`.
+Results are saved to `results.json`. The access key is reused from `NANOFDO_BENCHMARK_KEY` or the ignored `.nanofdo-benchmark-key` file and is never written to the results file. One invocation accepts 1–5 runs to respect the burst limit.
+
+To use a replacement key, set `NANOFDO_BENCHMARK_KEY`. To register again after an authorised revocation, delete `.nanofdo-benchmark-key` and rerun with your email.
+
+Run the offline client tests with:
+
+```bash
+python -m unittest test_benchmark.py
+```
 
 ## How to reproduce manually
 
@@ -94,6 +106,17 @@ NanoFDO is a high-performance JSON processing engine with an integrated L7 secur
 
 Learn more at [nanofdo.com](https://nanofdo.com).
 
+## Usage, privacy, and security
+
+By registering or using a hosted benchmark key, you agree to:
+
+- [Terms of Use](TERMS.md)
+- [Acceptable Use Policy](ACCEPTABLE_USE.md)
+- [Privacy Notice](PRIVACY.md)
+- [Benchmark Methodology](METHODOLOGY.md)
+
+Use only synthetic, non-confidential payloads. Do not publish an access key or include sensitive information in a public issue. Private security and privacy reports may be sent to `support@nanofdo.com`.
+
 ## License
 
-MIT
+The repository source is MIT licensed. The MIT license does not grant unlimited access to the hosted API; hosted access is governed by the documents above.

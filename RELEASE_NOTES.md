@@ -19,7 +19,7 @@ Public, server-side, reproducible parsing benchmarks for [NanoFDO](https://nanof
 
 - **Server:** OVH KS-A — Intel Xeon E-2274G @ 4.0GHz — Roubaix, France
 - **Payload:** 468 bytes JSON, 100,000 iterations measured server-side
-- **Free tier:** 1,000,000 API requests/month
+- **Hosted allowance from July 20, 2026:** 10 runs/day and 50 runs/calendar month
 
 ## How to reproduce
 
@@ -28,7 +28,7 @@ pip install requests
 python benchmark.py your-email@example.com 5
 ```
 
-Or register manually and call `POST https://api.nanofdo.com/api/v1/parse` with a Developer Edge key.
+Or register manually and call `POST https://api.nanofdo.com/api/v1/parse` with a benchmark-only key.
 
 ## About NanoFDO
 
