@@ -1,6 +1,6 @@
 # Public Benchmark Terms of Use
 
-**Last updated:** July 17, 2026  
+**Last updated:** July 18, 2026
 **Effective:** July 20, 2026
 
 These terms govern access to the NanoFDO public benchmark API and supplement the repository's MIT license. The MIT license applies to the source files in this repository. It does not grant unlimited access to the hosted API or any right to resell the hosted service.
@@ -61,4 +61,4 @@ To the maximum extent permitted by applicable law, the hosted benchmark and its 
 
 The service is operated from France by buro66 under the NanoFDO name. Applicable mandatory consumer and data-protection rights remain unaffected.
 
-Questions about these terms may be sent to `support@nanofdo.com`.
+Questions about these terms may be sent to `contact@buro66.com`.

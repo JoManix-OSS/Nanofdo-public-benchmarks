@@ -115,7 +115,7 @@ By registering or using a hosted benchmark key, you agree to:
 - [Privacy Notice](PRIVACY.md)
 - [Benchmark Methodology](METHODOLOGY.md)
 
-Use only synthetic, non-confidential payloads. Do not publish an access key or include sensitive information in a public issue. Private security and privacy reports may be sent to `support@nanofdo.com`.
+Use only synthetic, non-confidential payloads. Do not publish an access key or include sensitive information in a public issue. Private security and privacy reports may be sent to `contact@buro66.com`.
 
 ## License
 

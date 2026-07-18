@@ -1,6 +1,6 @@
 # Public Benchmark Acceptable Use Policy
 
-**Last updated:** July 17, 2026  
+**Last updated:** July 18, 2026
 **Effective:** July 20, 2026
 
 ## Allowed uses
@@ -46,7 +46,7 @@ You must not:
 
 Security research beyond ordinary benchmark reproduction requires prior written authorization. The absence of a technical block does not constitute authorization.
 
-Report suspected vulnerabilities privately to `support@nanofdo.com`. Do not include active keys, payloads containing sensitive data, or exploit details in a public GitHub issue.
+Report suspected vulnerabilities privately to `contact@buro66.com`. Do not include active keys, payloads containing sensitive data, or exploit details in a public GitHub issue.
 
 ## Enforcement
 
@@ -54,4 +54,4 @@ NanoFDO may rate-limit, reject, suspend, or revoke access when this policy is vi
 
 Signals are reviewed in context. Shared academic or corporate networks are not treated as abuse solely because multiple legitimate users have the same public source address.
 
-Questions or requests for a separate research testing arrangement may be sent to `support@nanofdo.com` before intensive testing begins.
+Questions or requests for a separate research testing arrangement may be sent to `contact@buro66.com` before intensive testing begins.
