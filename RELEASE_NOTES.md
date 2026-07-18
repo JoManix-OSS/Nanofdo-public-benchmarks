@@ -19,7 +19,7 @@ Public, server-side, reproducible parsing benchmarks for [NanoFDO](https://nanof
 
 - **Server:** OVH KS-A — Intel Xeon E-2274G @ 4.0GHz — Roubaix, France
 - **Payload:** 468 bytes JSON, 100,000 iterations measured server-side
-- **Hosted allowance from July 20, 2026:** 10 runs/day and 50 runs/calendar month
+- **Hosted allowance from July 18, 2026:** 10 runs/day and 50 runs/calendar month
 
 ## How to reproduce
 

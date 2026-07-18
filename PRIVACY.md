@@ -1,7 +1,7 @@
 # Public Benchmark Privacy Notice
 
 **Last updated:** July 18, 2026
-**Effective:** July 20, 2026
+**Effective:** July 18, 2026
 
 This notice describes personal-data processing associated with the NanoFDO hosted public benchmark. GitHub separately processes data when you browse, clone, star, fork, or contribute to this repository under GitHub's own privacy documentation.
 

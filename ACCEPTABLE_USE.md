@@ -1,7 +1,7 @@
 # Public Benchmark Acceptable Use Policy
 
 **Last updated:** July 18, 2026
-**Effective:** July 20, 2026
+**Effective:** July 18, 2026
 
 ## Allowed uses
 

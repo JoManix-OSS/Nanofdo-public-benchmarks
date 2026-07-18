@@ -1,7 +1,7 @@
 # Hosted Public Benchmark Methodology
 
 **Version:** 1.1  
-**Effective:** July 20, 2026
+**Effective:** July 18, 2026
 
 ## Purpose
 

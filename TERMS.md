@@ -1,7 +1,7 @@
 # Public Benchmark Terms of Use
 
 **Last updated:** July 18, 2026
-**Effective:** July 20, 2026
+**Effective:** July 18, 2026
 
 These terms govern access to the NanoFDO public benchmark API and supplement the repository's MIT license. The MIT license applies to the source files in this repository. It does not grant unlimited access to the hosted API or any right to resell the hosted service.
 

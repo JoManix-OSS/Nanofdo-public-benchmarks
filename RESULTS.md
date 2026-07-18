@@ -101,4 +101,4 @@ Average of 3 runs on the payload above.
 
 ## License
 
-Data collected before the dedicated hosted benchmark allowance took effect. From July 20, 2026, public keys are benchmark-only and limited to 10 runs per day and 50 runs per calendar month. This historical snapshot contains 23 runs.
+Data collected before the dedicated hosted benchmark allowance took effect. From July 18, 2026, public keys are benchmark-only and limited to 10 runs per day and 50 runs per calendar month. This historical snapshot contains 23 runs.
